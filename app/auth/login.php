@@ -11,7 +11,6 @@ if (isset($_POST['email'], $_POST['password'])) {
     $password = $_POST['password'];
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $pdo = new PDO('sqlite:../database/database.db');
     $statement = $pdo -> prepare("SELECT * FROM users where email = :email");
 
     $statement -> bindParam(':email', $email, PDO::PARAM_STR);
