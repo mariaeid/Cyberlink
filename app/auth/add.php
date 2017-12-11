@@ -14,13 +14,13 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['user
   $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
   $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-  $statement = $pdo -> prepare("INSERT INTO users (firstname, lastname, email, username, password) VALUES (:firstname, :lastname, :email, :username, :password)");
+  $statement = $pdo->prepare("INSERT INTO users (firstname, lastname, email, username, password) VALUES (:firstname, :lastname, :email, :username, :password)");
 
-  $statement -> bindParam(':firstname', $firstname, PDO::PARAM_STR);
-  $statement -> bindParam(':lastname', $lastname, PDO::PARAM_STR);
-  $statement -> bindParam(':email', $email, PDO::PARAM_STR);
-  $statement -> bindParam(':username', $username, PDO::PARAM_STR);
-  $statement -> bindParam(':password', $password, PDO::PARAM_STR);
+  $statement->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+  $statement->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+  $statement->bindParam(':email', $email, PDO::PARAM_STR);
+  $statement->bindParam(':username', $username, PDO::PARAM_STR);
+  $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
   if (!$statement) {
     die(var_dump(

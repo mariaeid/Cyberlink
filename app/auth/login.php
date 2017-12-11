@@ -11,11 +11,11 @@ if (isset($_POST['email'], $_POST['password'])) {
     $password = $_POST['password'];
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
-    $statement = $pdo -> prepare("SELECT * FROM users where email = :email");
+    $statement = $pdo->prepare("SELECT * FROM users where email = :email");
 
-    $statement -> bindParam(':email', $email, PDO::PARAM_STR);
-    $statement -> execute();
-    $userData = $statement -> fetch(PDO::FETCH_ASSOC);
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->execute();
+    $userData = $statement->fetch(PDO::FETCH_ASSOC);
 
     //Redirecting back to login page if the email address doesn't exist
     if (empty($userData)) {
