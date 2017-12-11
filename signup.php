@@ -3,7 +3,7 @@
 <article>
     <h1>Create Account</h1>
 
-    <form action="app/auth/signup.php" method="post">
+    <form action="app/auth/add.php" method="post">
         <div class="form-group">
             <label for="firstname">First Name</label>
             <input class="form-control" type="firstname" name="firstname" required>
