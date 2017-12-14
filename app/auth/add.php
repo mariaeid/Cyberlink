@@ -5,7 +5,7 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 // Creation of new user
-// FRÅGA: Bör man kolla empty fields trots att det är gjort frontend??
+// FRÅGA: Bör man kolla empty fields trots att det är gjort frontend?? Ja
 // OBS! Lägg in koll så att användaren inte redan finns!
 
 if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['username'], $_POST['password'])) {
@@ -30,6 +30,30 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['user
   $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
   $statement -> execute();
+
+  if (!$user) {
+     $statement = $pdo->query('SELECT * FROM users WHERE  username= :username');
+     $statement->bindParam(':username', $username, PDO::PARAM_STR);
+     $statement->execute();
+
+
+     $userData = $statement->fetch(PDO::FETCH_ASSOC);
+
+
+     $_SESSION['user'] = [
+         "id" => $userData['id'],
+         "firstname" => $userData['firstname'],
+         "lastname" => $userData['lastname'],
+         "email" => $userData['email'],
+         "username" => $userData['username'],
+         "bio" => $userData['bio'],
+         "picture" => $userData['picture'],
+     ];
+
+     redirect('../../profile.php');
+
+
+   }
 
   redirect('/login.php');
 
