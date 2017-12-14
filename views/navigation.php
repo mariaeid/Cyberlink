@@ -6,7 +6,9 @@
           <a class="nav-link" href="/index.php">Home</a>
       </li><!-- /nav-item -->
       <li class="nav-item">
-          <a class="nav-link" href="/about.php">About</a>
+          <?php if (isset($_SESSION['user'])): ?>
+              <a class="nav-link" href="/profile.php"><?php echo "Your Profile" ?></a>
+          <?php endif; ?>
       </li><!-- /nav-item -->
       <li class="nav-item">
           <?php if (isset($_SESSION['user'])): ?>
