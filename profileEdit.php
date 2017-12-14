@@ -3,7 +3,8 @@
 <article>
     <h1>Edit Profile</h1>
 
-    <form action="app/auth/edit.php" method="post">
+    <form action="app/auth/edit.php" method="post" enctype="multipart/form-data">
+
         <div class="form-group">
             <label for="firstname">First Name:</label>
             <input class="form-control" type="text" name="firstname" value="<?php echo $_SESSION['user']['firstname'];?>">
@@ -27,16 +28,6 @@
         <div class="form-group">
             <label for="lastname">Bio:</label>
             <textarea name="bio" rows="8" cols="80"><?php echo $_SESSION['user']['bio'];?></textarea>
-        </div><!-- /form-group -->
-
-        <div class="form-group">
-            <label for="username">Picture: </label>
-            <input type="text" name="picture" value="<?php echo $_SESSION['user']['picture'];?>">
-        </div><!-- /form-group -->
-
-        <div class="form-group">
-            <label for="username">Password: </label>
-            <input class="form-control" type="password" name="password" value="">
         </div><!-- /form-group -->
 
         <button type="submit" name="edit" class="btn btn-primary">Save Changes</button>
