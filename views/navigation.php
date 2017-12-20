@@ -12,6 +12,11 @@
       </li><!-- /nav-item -->
       <li class="nav-item">
           <?php if (isset($_SESSION['user'])): ?>
+              <a class="nav-link" href="/submissions.php"><?php echo "Your Sumissions" ?></a>
+          <?php endif; ?>
+      </li><!-- /nav-item -->
+      <li class="nav-item">
+          <?php if (isset($_SESSION['user'])): ?>
               <a class="nav-link" href="/app/auth/logout.php"><?php echo "Logout" ?></a>
           <?php else : ?>
               <a class="nav-link" href="/login.php">Login</a>
