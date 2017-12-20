@@ -4,11 +4,6 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-//Redirection to edit profile page
-if (isset($_POST['profile'])) {
-    redirect('/profileEdit.php');
-}
-
 //Edit of user profile details
 
 if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'],$_POST['username'], $_POST['bio'])) {
