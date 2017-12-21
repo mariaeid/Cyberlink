@@ -28,7 +28,11 @@
         <div class="form-group">
             <button type="submit" name="edit" class="btn btn-primary">Edit profile</button>
         </div>
-
+    </form>
+    <form action="/changePw.php" method="post">
+        <div class="form-group">
+            <button type="submit" name="changePw" class="btn btn-primary">Change password</button>
+        </div>
     </form>
 </article>
 

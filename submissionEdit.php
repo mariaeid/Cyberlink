@@ -10,7 +10,7 @@ require __DIR__.'/app/posts/store.php';
 
         <div class="form-group">
             <label for="url">URL:</label>
-            <input class="form-control" type="text" name="url" value="<?php echo $postId ?>">
+            <input class="form-control" type="text" name="url" value=" <?php ?> ">
         </div><!-- /form-group -->
 
         <div class="form-group">

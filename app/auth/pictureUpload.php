@@ -29,17 +29,10 @@ if (isset($_FILES['picture'])) {
    $newData = $pdo->prepare("SELECT * FROM users where id = :id");
    $newData->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
    $newData->execute();
-   $userData = $newData->fetch(PDO::FETCH_ASSOC);
 
-   $_SESSION['user'] = [
-       "id" => $userData['id'],
-       "firstname" => $userData['firstname'],
-       "lastname" => $userData['lastname'],
-       "email" => $userData['email'],
-       "username" => $userData['username'],
-       "bio" => $userData['bio'],
-       "picture" => $userData['picture'],
-   ];
+   $user = $newData->fetch(PDO::FETCH_ASSOC);
+
+   $_SESSION['user'] = $user;
 
    redirect('../../profile.php');
 

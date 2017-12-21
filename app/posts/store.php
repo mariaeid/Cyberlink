@@ -10,6 +10,13 @@ $statement = $pdo->prepare("SELECT * FROM posts");
 $statement->execute();
 $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+// $_SESSION['post'] = [
+//     "id" => $posts['id'],
+//     "url" => $posts['url'],
+//     "title" => $posts['title'],
+//     "description" => $posts['description'],
+// ];
+
 if (isset($_POST['title'], $_POST['url'], $_POST['description'])) {
     $title = filter_var(trim($_POST['title']), FILTER_SANITIZE_STRING);
     $url = filter_var(trim($_POST['url']), FILTER_SANITIZE_STRING);
@@ -29,6 +36,8 @@ if (isset($_POST['title'], $_POST['url'], $_POST['description'])) {
     $statement->bindParam(':username', $_SESSION['user']['username'], PDO::PARAM_STR);
 
     $statement -> execute();
+
+
 
     redirect('/../../index.php');
 }
