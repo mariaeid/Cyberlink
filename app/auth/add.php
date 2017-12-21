@@ -46,17 +46,9 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['user
         $statement->bindParam(':username', $username, PDO::PARAM_STR);
         $statement->execute();
 
-        $userData = $statement->fetch(PDO::FETCH_ASSOC);
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-        $_SESSION['user'] = [
-            "id" => $userData['id'],
-            "firstname" => $userData['firstname'],
-            "lastname" => $userData['lastname'],
-            "email" => $userData['email'],
-            "username" => $userData['username'],
-            "bio" => $userData['bio'],
-            "picture" => $userData['picture'],
-        ];
+        $_SESSION['user'] = $user;
 
         redirect('../../profile.php');
 
