@@ -5,6 +5,10 @@ declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
 // Creation of new user
+// OBS! Gör unset på password så det inte sparas om man behöver fylla i uppgifter igen!!
+
+$emailExists = "";
+$usernameExists = "";
 
 if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['username'], $_POST['password'])) {
     $firstname = filter_var(trim($_POST['firstname']), FILTER_SANITIZE_STRING);
@@ -13,47 +17,55 @@ if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['user
     $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-//   $query = $pdo->query('SELECT email FROM users');
-//   $query->execute();
-//   $userEmails = $query->fetchAll(PDO::FETCH_ASSOC);
-//
-//   foreach ($userEmails as $userEmail) {
-//       if ($userEmail['email'] === $email) {
-//           $emailExists = true;
-//       }
-//   }
-//
-// }
+    $query = $pdo->query('SELECT * FROM users WHERE email = :email OR username = :username');
 
-    $statement = $pdo->prepare("INSERT INTO users (firstname, lastname, email, username, password) VALUES (:firstname, :lastname, :email, :username, :password)");
+    $query->bindParam(':email', $email, PDO::PARAM_STR);
+    $query->bindParam(':username', $username, PDO::PARAM_STR);
 
-    if (!$statement) {
-        die(var_dump(
-            $pdo->errorInfo()
-        ));
+    $query->execute();
+
+    $user = $query->fetch(PDO::FETCH_ASSOC);
+
+    var_dump($user);
+
+    $userEmail = $user['email'];
+    $userUsername = $user['username'];
+    if ($userEmail === $email) {
+        $emailExists = "The email address already exists";
     }
+    elseif ($userUsername === $username) {
+        $usernameExists = "The username already exists";
+    }
+    else {
 
-    $statement->bindParam(':firstname', $firstname, PDO::PARAM_STR);
-    $statement->bindParam(':lastname', $lastname, PDO::PARAM_STR);
-    $statement->bindParam(':email', $email, PDO::PARAM_STR);
-    $statement->bindParam(':username', $username, PDO::PARAM_STR);
-    $statement->bindParam(':password', $password, PDO::PARAM_STR);
+        $statement = $pdo->prepare("INSERT INTO users (firstname, lastname, email, username, password) VALUES (:firstname, :lastname, :email, :username, :password)");
 
-    $statement -> execute();
+        if (!$statement) {
+            die(var_dump(
+                $pdo->errorInfo()
+            ));
+        }
 
-    if (!$user) {
-        $statement = $pdo->query('SELECT * FROM users WHERE  username= :username');
+        $statement->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+        $statement->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
         $statement->bindParam(':username', $username, PDO::PARAM_STR);
-        $statement->execute();
+        $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
-        $user = $statement->fetch(PDO::FETCH_ASSOC);
+        $statement -> execute();
 
-        $_SESSION['user'] = $user;
+        if (!$user) {
+            $statement = $pdo->query('SELECT * FROM users WHERE  username= :username');
+            $statement->bindParam(':username', $username, PDO::PARAM_STR);
+            $statement->execute();
 
-        redirect('../../profile.php');
+            $user = $statement->fetch(PDO::FETCH_ASSOC);
 
+            $_SESSION['user'] = $user;
+
+            redirect('../../profile.php');
+
+        }
     }
-
-    redirect('/login.php');
 
 }
