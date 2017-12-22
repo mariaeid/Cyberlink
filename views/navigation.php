@@ -12,7 +12,7 @@
       </li><!-- /nav-item -->
       <li class="nav-item">
           <?php if (isset($_SESSION['user'])): ?>
-              <a class="nav-link" href="/submissions.php"><?php echo "Your Sumissions" ?></a>
+              <a class="nav-link" href="/submissions.php"><?php echo "Your Submissions" ?></a>
           <?php endif; ?>
       </li><!-- /nav-item -->
       <li class="nav-item">
