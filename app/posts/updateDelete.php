@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// Update of posts in the database.
+// Update of posts in the database (applies when clicking on edit).
 
 if (isset($_POST['edit'])) {
     if (isset($_POST['title'], $_POST['url'], $_POST['description'])) {
@@ -25,12 +25,12 @@ if (isset($_POST['edit'])) {
         $statement->bindParam(':description', $description, PDO::PARAM_STR);
         $statement->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
 
-        $statement -> execute();
+        $statement->execute();
 
     }
 }
 
-// Deletion of posts in the database.
+// Deletion of posts in the database (applies when clicking on delete).
 
 if (isset($_POST['delete'])) {
     $statement = $pdo->prepare("DELETE FROM posts WHERE id = :id");
