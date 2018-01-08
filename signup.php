@@ -29,8 +29,8 @@ require __DIR__.'/app/auth/add.php';
             value=<?php if (isset($_POST['email'])): ?>
                 "<?php echo $email ?>"
             <?php endif; ?>>
-            <?php if ($emailExists): ?>
-                <p class="alert alert-danger"><?php echo $emailExists; ?></p>
+            <?php if ($errorEmail): ?>
+                <p class="alert alert-danger"><?php echo $errorEmail; ?></p>
             <?php endif; ?>
         </div><!-- /form-group -->
 
@@ -40,14 +40,22 @@ require __DIR__.'/app/auth/add.php';
             value=<?php if (isset($_POST['username'])): ?>
                 "<?php echo $username ?>"
             <?php endif; ?>>
-            <?php if ($usernameExists): ?>
-                <p class="alert alert-danger"><?php echo $usernameExists; ?></p>
+            <?php if ($errorUsername): ?>
+                <p class="alert alert-danger"><?php echo $errorUsername; ?></p>
             <?php endif; ?>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="password">Password</label>
             <input class="form-control" type="password" name="password" required>
+        </div><!-- /form-group -->
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm password:</label>
+            <input class="form-control" type="password" name="confirmPassword" required>
+            <?php if ($errorPw): ?>
+                <p class="alert alert-danger"><?php echo $errorPw; ?></p>
+            <?php endif; ?>
         </div><!-- /form-group -->
 
         <button type="submit" class="btn btn-primary">Sign Up</button>
