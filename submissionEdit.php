@@ -33,7 +33,7 @@ require __DIR__.'/app/posts/store.php';
                 <label for="description">Description:</label>
                 <?php foreach ($posts as $post): ?>
                     <?php if($_POST['post_id'] === $post['id']) : ?>
-                        <textarea name="description" rows="8" cols="80"><?php echo $post['description']; ?></textarea>
+                        <textarea class="form-control" name="description" rows="8" cols="80"><?php echo $post['description']; ?></textarea>
                     <?php endif; ?>
                 <?php endforeach; ?>
             </div><!-- /form-group -->
@@ -46,6 +46,7 @@ require __DIR__.'/app/posts/store.php';
             <?php endforeach; ?>
 
             <button type="submit" name="edit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" name="cancel" class="btn btn-primary">Cancel</button>
             <button type="submit" name="delete" class="btn btn-danger">Delete</button>
         </form>
 </article>
