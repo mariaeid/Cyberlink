@@ -27,6 +27,13 @@ if (isset($_POST['edit'])) {
 
         $statement->execute();
 
+        $newData = $pdo->prepare("SELECT * from posts where id = :id");
+        $newData->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
+        $newData->execute();
+
+        $post = $newData->fetch(PDO::FETCH_ASSOC);
+
+        redirect('/../../submissions.php');
     }
 }
 
@@ -46,10 +53,6 @@ if (isset($_POST['delete'])) {
     $statement -> execute();
 }
 
-$newData = $pdo->prepare("SELECT * from posts where id = :id");
-$newData->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
-$newData->execute();
-
-$post = $newData->fetch(PDO::FETCH_ASSOC);
-
-redirect('/../../submissions.php');
+if (isset($_POST['cancel'])) {
+    redirect('../../submissions.php');
+}
