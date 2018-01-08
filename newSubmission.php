@@ -16,10 +16,11 @@ require __DIR__.'/views/header.php';
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea name="description" rows="8" cols="80"></textarea>
+            <textarea class="form-control" name="description" rows="8" cols="80"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" name="store" class="btn btn-primary">Submit</button>
+            <button type="submit" name="cancel" class="btn btn-primary">Cancel</button>
         </div>
     </form>
 
