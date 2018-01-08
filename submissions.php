@@ -5,7 +5,7 @@ require __DIR__.'/app/posts/store.php';
 ?>
 
 <article>
-    <h1><?php echo $_SESSION['user']['firstname'].' '.$_SESSION['user']['lastname'];?></h1>
+    <h1>Your Posts</h1>
         <?php foreach ($posts as $post): ?>
             <?php if ($post['username'] === $_SESSION['user']['username']):?>
                 <form action="/submissionEdit.php" method="post">
@@ -19,6 +19,13 @@ require __DIR__.'/app/posts/store.php';
                 </form>
             <?php endif; ?>
         <?php endforeach; ?>
+</article>
+<article>
+    <form action="/newSubmission.php" method="post">
+        <div class="form-group">
+            <button type="submit" name="newLink" class="btn btn-light">Add a new post</button>
+        </div>
+    </form>
 </article>
 
 <?php require __DIR__.'/views/footer.php'; ?>
