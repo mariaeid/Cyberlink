@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// Login of users
+// Login of user
+
+$errorEmail = "";
+$errorPw = "";
 
 if (isset($_POST['email'], $_POST['password'])) {
     $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
@@ -16,23 +19,25 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    //Redirecting back to login page if the email address doesn't exist
+    //Saving error variable if the email address doesn't exist
     if (empty($user)) {
-        redirect('/login.php');
+        $errorEmail = "There is no registered user on this email address";
     }
-    //If the email address exists and the password match we store the user details in a session and redirects the user to the start page
+    //If the email address exists and the password match we store the user details (except for the pw) in a session, remove the errors and redirects the user to the start page
     else {
         if (password_verify($password, $user['password']))
         {
             unset($user['password']);
-
             $_SESSION['user'] = $user;
+
+            $errorEmail = "";
+            $errorPw = "";
 
             redirect('/index.php');
         }
-        //Redirecting back to login page if the password and email doesn't match
+        //Saving error variable if the password and email don't match
         else {
-            redirect('/login.php');
+            $errorPw = "The password is not correct";
         }
     }
 }

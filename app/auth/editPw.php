@@ -1,74 +1,73 @@
 <?php
 
 declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
 
-if (isset($_POST['currentPassword'], $_POST['newPassword'], $_POST['confirmPassword'])) {
-    $currentPassword = $_POST['currentPassword'];
-    $newPassword = $_POST['newPassword'];
-    $confirmPassword = $_POST['confirmPassword'];
+$errorCurrent = "";
+$errorNew = "";
 
-    $statement = $pdo->prepare("SELECT * FROM users where id = :id");
+if (isset($_POST['editPw'])) {
 
-    $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_STR);
-    $statement->execute();
-    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    if (isset($_POST['currentPassword'], $_POST['newPassword'], $_POST['confirmPassword'])) {
+        $currentPassword = $_POST['currentPassword'];
+        $newPassword = $_POST['newPassword'];
+        $confirmPassword = $_POST['confirmPassword'];
 
-      if (password_verify($currentPassword, $user['password']))
-      {
-          if ($newPassword === $confirmPassword) {
-            echo "correct";
-            $password = password_hash($newPassword, PASSWORD_DEFAULT);
+        $statement = $pdo->prepare("SELECT * FROM users where id = :id");
 
-            $statement = $pdo->prepare("UPDATE users SET password = :password WHERE id = :id");
+        $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_STR);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-              if (!$statement) {
-                  die(var_dump(
-                      $pdo->errorInfo()
-                  ));
-              }
+        //Verification to see that the entered new pw matches the user's pw
+        if (password_verify($currentPassword, $user['password']))
+        {
+            //If the user has repeated the new pw correctly the new pw is saved
+            if ($newPassword === $confirmPassword) {
+                $password = password_hash($newPassword, PASSWORD_DEFAULT);
 
-              $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
-              $statement->bindParam(':password', $password, PDO::PARAM_STR);
+                $statement = $pdo->prepare("UPDATE users SET password = :password WHERE id = :id");
 
-              $statement->execute();
+                if (!$statement) {
+                    die(var_dump(
+                        $pdo->errorInfo()
+                    ));
+                }
 
-              $newData = $pdo->prepare("SELECT * FROM users where id = :id");
-              $newData->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
-              $newData->execute();
-              $user = $newData->fetch(PDO::FETCH_ASSOC);
+                $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
+                $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
-              unset($user['password']);
+                $statement->execute();
 
-              $_SESSION['user'] = $user;
+                $newData = $pdo->prepare("SELECT * FROM users where id = :id");
+                $newData->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
+                $newData->execute();
+                $user = $newData->fetch(PDO::FETCH_ASSOC);
 
-              redirect('../../profile.php');
+                //Store new session with user details (except pw), empty error variables & redirects to the profile page
+                unset($user['password']);
+                $_SESSION['user'] = $user;
+
+                $errorCurrent = "";
+                $errorNew = "";
+
+                redirect('../../profile.php');
             }
-      }
 
-      else {
-          echo "Not correct";
-      }
+            //Saving variable if new pw doesn't match with confirmed new pw
+            else {
+                $errorNew = "The new password doesn't match. Please enter again";
+            }
+        }
 
+        //Saving variable if wrong current pw has been entered
+        else {
+            $errorCurrent = "The current password is not correct, please try again";
+        }
+
+    }
 }
 
-
-// Försök att verifiera lösen
-// if (isset($_POST['currentPassword'])) {
-//     $currentPassword = password_hash($_POST['currentPassword'], PASSWORD_DEFAULT);
-//
-//     $statement = $pdo->prepare("SELECT * FROM users where id = :id");
-//     $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
-//     $statement->execute();
-//     $userData = $statement->fetch(PDO::FETCH_ASSOC);
-//
-//     $oldPassword = $userData['password'];
-//
-//     var_dump($oldPassword);
-//     var_dump($currentPassword);
-//
-//     if(password_verify($oldPassword, $currentPassword)) {
-//       echo "Correct";
-//     }
-// }
+if (isset($_POST['cancel'])) {
+    redirect('../../profile.php');
+}

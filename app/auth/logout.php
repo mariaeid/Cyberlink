@@ -8,5 +8,6 @@ require __DIR__.'/../autoload.php';
 
 //Removing user session and redirecting to startpage
 unset($_SESSION['user']);
+session_destroy();
 
 redirect('/index.php');
