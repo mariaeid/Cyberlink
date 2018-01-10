@@ -44,21 +44,12 @@ $posts = allPosts($pdo);
                 <p class="fontSmall"> Submitted by <?php echo $post['post_username']; ?></p>
                 <div class="voteContainer">
                     <div class="upVotes">
-                        <!-- Count of all upvotes on the post -->
-                        <?php
-                        $queryUpVotes = $pdo->query('SELECT COUNT(*) FROM votes WHERE direction="1" AND vote_post_id = :post_id');
-                        $queryUpVotes->bindParam(':post_id', $post['post_id'], PDO::PARAM_STR);
-                        $queryUpVotes->execute();
-                        $upVotes = $queryUpVotes->fetch(PDO::FETCH_ASSOC);
-                        ?>
+                        <!-- All upvotes on the post -->
+                        <?php $upVotes = allVotes($pdo, $post['post_id'], "1"); ?>
                         <p class="voteNumber pr-1"><?php echo $upVotes['COUNT(*)']; ?></p>
                         <!-- Count on all upvotes on the post by the signed in user -->
                         <?php if (isset($_SESSION['user'])):
-                        $queryUpVotesUser = $pdo->query('SELECT * FROM votes WHERE direction="1" AND vote_post_id = :post_id AND vote_username = :username');
-                        $queryUpVotesUser->bindParam(':post_id', $post['post_id'], PDO::PARAM_STR);
-                        $queryUpVotesUser->bindParam(':username', $_SESSION['user']['username'], PDO::PARAM_STR);
-                        $queryUpVotesUser->execute();
-                        $upVotesUser = $queryUpVotesUser->fetch(PDO::FETCH_ASSOC);
+                            $upVotesUser = allUserVotes($pdo, $post['post_id'], "1", $_SESSION['user']['username']);
                             if (empty($upVotesUser)): ?>
                                 <button class="fa fa-thumbs-o-up fa-flag voteButton" aria-hidden="true" name="up" onsubmit=""></button>
                                 <?php else: ?>
@@ -69,21 +60,12 @@ $posts = allPosts($pdo);
                         <?php endif ; ?>
                     </div>
                     <div class="downVotes">
-                        <!-- Count of all upvotes on the post -->
-                        <?php
-                        $queryDownVotes = $pdo->query('SELECT COUNT(*) FROM votes WHERE direction="-1" AND vote_post_id = :post_id');
-                        $queryDownVotes->bindParam(':post_id', $post['post_id'], PDO::PARAM_STR);
-                        $queryDownVotes->execute();
-                        $downVotes = $queryDownVotes->fetch(PDO::FETCH_ASSOC);
-                        ?>
+                        <!-- All downvotes on the post -->
+                        <?php $downVotes = allVotes($pdo, $post['post_id'], "-1"); ?>
                         <p class="voteNumber pr-1"><?php echo $downVotes['COUNT(*)']; ?></p>
                         <!-- Count on all downvotes on the post by the signed in user -->
                         <?php if (isset($_SESSION['user'])):
-                        $queryDownVotesUser = $pdo->query('SELECT * FROM votes WHERE direction="-1" AND vote_post_id = :post_id AND vote_username = :username');
-                        $queryDownVotesUser->bindParam(':post_id', $post['post_id'], PDO::PARAM_STR);
-                        $queryDownVotesUser->bindParam(':username', $_SESSION['user']['username'], PDO::PARAM_STR);
-                        $queryDownVotesUser->execute();
-                        $downVotesUser = $queryDownVotesUser->fetch(PDO::FETCH_ASSOC);
+                            $downVotesUser = allUserVotes($pdo, $post['post_id'], "-1", $_SESSION['user']['username']);
                             if (empty($downVotesUser)): ?>
                                 <button class="fa fa-thumbs-o-down fa-flag voteButton" aria-hidden="true" name="down" onsubmit=""></button>
                                 <?php else: ?>
