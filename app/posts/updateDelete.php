@@ -12,7 +12,7 @@ if (isset($_POST['edit'])) {
         $url = filter_var(trim($_POST['url']), FILTER_SANITIZE_STRING);
         $description = filter_var(trim($_POST['description']), FILTER_SANITIZE_STRING);
 
-        $statement = $pdo->prepare("UPDATE posts SET title = :title, url = :url, description = :description WHERE id = :id");
+        $statement = $pdo->prepare("UPDATE posts SET title = :title, url = :url, description = :description WHERE post_id = :id");
 
         if (!$statement) {
             die(var_dump(
@@ -27,7 +27,7 @@ if (isset($_POST['edit'])) {
 
         $statement->execute();
 
-        $newData = $pdo->prepare("SELECT * from posts where id = :id");
+        $newData = $pdo->prepare("SELECT * from posts where post_id = :id");
         $newData->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
         $newData->execute();
 
@@ -40,7 +40,7 @@ if (isset($_POST['edit'])) {
 // Deletion of posts in the database (applies when clicking on delete).
 
 if (isset($_POST['delete'])) {
-    $statement = $pdo->prepare("DELETE FROM posts WHERE id = :id");
+    $statement = $pdo->prepare("DELETE FROM posts WHERE post_id = :id");
 
         if (!$statement) {
           die(var_dump(
@@ -51,6 +51,7 @@ if (isset($_POST['delete'])) {
     $statement->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
 
     $statement -> execute();
+    redirect('../../submissions.php');
 }
 
 if (isset($_POST['cancel'])) {

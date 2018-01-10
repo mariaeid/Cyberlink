@@ -31,7 +31,7 @@
         </div><!-- /form-group -->
 
         <button type="submit" name="edit" class="btn btn-primary">Save Changes</button>
-        <button type="submit" name="cancel" class="btn btn-primary">Cancel</button>
+        <button type="submit" name="cancel" class="btn btn-primary" formnovalidate>Cancel</button>
     </form>
 </article>
 

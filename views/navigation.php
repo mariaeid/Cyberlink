@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#"><?php echo $config['title']; ?></a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navStyle">
+  <a class="navbar-brand navStyle" href="#"><img class="logo" src="/../app/imgs/logo.png"></a>
 
   <ul class="navbar-nav">
       <li class="nav-item">
@@ -12,7 +12,7 @@
       </li><!-- /nav-item -->
       <li class="nav-item">
           <?php if (isset($_SESSION['user'])): ?>
-              <a class="nav-link" href="/submissions.php"><?php echo "Your Submissions" ?></a>
+              <a class="nav-link" href="/submissions.php"><?php echo "Your Posts" ?></a>
           <?php endif; ?>
       </li><!-- /nav-item -->
       <li class="nav-item">

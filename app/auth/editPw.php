@@ -13,9 +13,9 @@ if (isset($_POST['editPw'])) {
         $newPassword = $_POST['newPassword'];
         $confirmPassword = $_POST['confirmPassword'];
 
-        $statement = $pdo->prepare("SELECT * FROM users where id = :id");
+        $statement = $pdo->prepare("SELECT * FROM users where user_id = :id");
 
-        $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_STR);
+        $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_STR);
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
@@ -26,7 +26,7 @@ if (isset($_POST['editPw'])) {
             if ($newPassword === $confirmPassword) {
                 $password = password_hash($newPassword, PASSWORD_DEFAULT);
 
-                $statement = $pdo->prepare("UPDATE users SET password = :password WHERE id = :id");
+                $statement = $pdo->prepare("UPDATE users SET password = :password WHERE user_id = :id");
 
                 if (!$statement) {
                     die(var_dump(
@@ -34,13 +34,13 @@ if (isset($_POST['editPw'])) {
                     ));
                 }
 
-                $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
+                $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
                 $statement->bindParam(':password', $password, PDO::PARAM_STR);
 
                 $statement->execute();
 
-                $newData = $pdo->prepare("SELECT * FROM users where id = :id");
-                $newData->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
+                $newData = $pdo->prepare("SELECT * FROM users where user_id = :id");
+                $newData->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
                 $newData->execute();
                 $user = $newData->fetch(PDO::FETCH_ASSOC);
 

@@ -6,17 +6,13 @@ require __DIR__.'/../autoload.php';
 
 // In this file we store/insert new posts in the database.
 
-$statement = $pdo->prepare("SELECT * FROM posts");
-$statement->execute();
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-if (isset($_POST['edit'])) {
+if (isset($_POST['store'])) {
     if (isset($_POST['title'], $_POST['url'], $_POST['description'])) {
         $title = filter_var(trim($_POST['title']), FILTER_SANITIZE_STRING);
         $url = filter_var(trim($_POST['url']), FILTER_SANITIZE_STRING);
         $description = filter_var(trim($_POST['description']), FILTER_SANITIZE_STRING);
 
-        $statement = $pdo->prepare("INSERT INTO posts (title, url, description, username) VALUES (:title, :url, :description, :username)");
+        $statement = $pdo->prepare("INSERT INTO posts (title, url, description, post_username) VALUES (:title, :url, :description, :username)");
 
         if (!$statement) {
             die(var_dump(

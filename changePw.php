@@ -28,7 +28,7 @@ require __DIR__.'/app//auth/editPw.php';
         </div><!-- /form-group -->
 
         <button type="submit" name="editPw" class="btn btn-primary">Save Changes</button>
-        <button type="submit" name="cancel" class="btn btn-primary">Cancel</button>
+        <button type="submit" name="cancel" class="btn btn-primary" formnovalidate>Cancel</button>
     </form>
 
 </article>

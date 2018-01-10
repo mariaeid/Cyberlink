@@ -14,7 +14,7 @@ if (isset($_POST['edit'])) {
         $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
         $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
 
-        $statement = $pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, username = :username, bio = :bio WHERE id = :id");
+        $statement = $pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, username = :username, bio = :bio WHERE user_id = :id");
 
         if (!$statement) {
             die(var_dump(
@@ -22,7 +22,7 @@ if (isset($_POST['edit'])) {
             ));
         }
 
-        $statement->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
+        $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
         $statement->bindParam(':firstname', $firstname, PDO::PARAM_STR);
         $statement->bindParam(':lastname', $lastname, PDO::PARAM_STR);
         $statement->bindParam(':email', $email, PDO::PARAM_STR);
@@ -31,8 +31,8 @@ if (isset($_POST['edit'])) {
 
         $statement->execute();
 
-        $newData = $pdo->prepare("SELECT * FROM users where id = :id");
-        $newData->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_INT);
+        $newData = $pdo->prepare("SELECT * FROM users where user_id = :id");
+        $newData->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
         $newData->execute();
 
         $user = $newData->fetch(PDO::FETCH_ASSOC);

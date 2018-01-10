@@ -1,5 +1,63 @@
 /* In this file you can add your custom styles. */
 
 i {
+  margin-top: 15% !important;
+  font-size: 1.2em !important;
+}
+
+.logo {
+  width: 40px;
+}
+
+.siteLink {
+  font-size: 20px;
+}
+
+.siteLink:visited {
+  color: #551A8B;
+}
+
+.fontSmall {
+  font-size: 14px;
+}
+
+.voteContainer {
+  display: flex;
+}
+
+.voteButton {
+  padding: 0;
+  border: none;
+  outline:none;
+  background: none;
   cursor: pointer;
+}
+
+.voteButtonClicked {
+  color: #019ba7;
+}
+
+.fa-flag:hover {
+    color: #019ba7;
+}
+
+.upVotes {
+  margin-right: 3%;
+  display: flex;
+}
+
+.downVotes {
+  display: flex;
+}
+
+.avatarSmall {
+  object-fit: cover;
+  height: 100px;
+  width: 100px;
+}
+
+.avatarLarge {
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
 }

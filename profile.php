@@ -8,9 +8,9 @@
         <div class="form-group">
             <!-- Om bild inte finns - visa avatar placeholder-->
             <?php if (!isset($_SESSION['user']['picture'])): ?>
-                <img src="app/imgs/avatar_placeholder.png" class="img-thumbnail" width="200px">
+                <img src="app/imgs/avatar_placeholder.png" class="img-thumbnail rounded-circle avatarLarge">
             <?php else : ?>
-                <img src="app/imgs/<?php echo $_SESSION['user']['picture']?>" class="img-thumbnail" width="20%">
+                <img src="app/imgs/<?php echo $_SESSION['user']['picture']?>" class="img-thumbnail rounded-circle avatarLarge">
             <?php endif; ?>
         </div>
 

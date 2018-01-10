@@ -58,7 +58,7 @@ require __DIR__.'/app/auth/add.php';
             <?php endif; ?>
         </div><!-- /form-group -->
 
-        <button type="submit" class="btn btn-primary">Sign Up</button>
+        <button type="submit" name="add" class="btn btn-primary">Sign Up</button>
     </form>
 </article>
 

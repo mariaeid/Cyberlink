@@ -8,19 +8,19 @@ require __DIR__.'/views/header.php';
         <h4>Add link</h4>
         <div class="form-group">
             <label for="url">URL:</label>
-            <input class="form-control" type="text" name="url">
+            <input class="form-control" type="text" name="url" required>
         </div>
         <div class="form-group">
             <label for="title">Title:</label>
-            <input class="form-control" type="text" name="title">
+            <input class="form-control" type="text" name="title" required>
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control" name="description" rows="8" cols="80"></textarea>
+            <textarea class="form-control" name="description" rows="8" cols="80" required></textarea>
         </div>
         <div class="form-group">
             <button type="submit" name="store" class="btn btn-primary">Submit</button>
-            <button type="submit" name="cancel" class="btn btn-primary">Cancel</button>
+            <button type="submit" name="cancel" class="btn btn-primary" formnovalidate>Cancel</button>
         </div>
     </form>
 
