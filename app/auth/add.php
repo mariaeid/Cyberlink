@@ -6,10 +6,6 @@ require __DIR__.'/../autoload.php';
 
 // Creation of new user
 
-$errorEmail = "";
-$errorUsername = "";
-$errorPw = "";
-
 // if (isset($_POST['add'])) {
     if (isset($_POST['firstname'], $_POST['lastname'], $_POST['email'], $_POST['username'], $_POST['password'], $_POST['confirmPassword'])) {
         $firstname = filter_var(trim($_POST['firstname']), FILTER_SANITIZE_STRING);
@@ -31,13 +27,20 @@ $errorPw = "";
         $userEmail = $user['email'];
         $userUsername = $user['username'];
 
-        //Saving error variable if the email already exists
+        $_SESSION['firstnameSave'] = $firstname;
+        $_SESSION['lastnameSave'] = $lastname;
+        $_SESSION['emailSave'] = $email;
+        $_SESSION['usernameSave'] = $username;
+
+        //Saving error session if the email already exists
         if ($userEmail === $email) {
-            $errorEmail = "The email address already exists";
+            $_SESSION['error'] = "The email address already exists";
+            redirect('../../signup.php');
         }
-        //Saving error variable if the username already exists
+        //Saving error session if the username already exists
         elseif ($userUsername === $username) {
-            $errorUsername = "The username already exists";
+            $_SESSION['error'] = "The username already exists";
+            redirect('../../signup.php');
         }
         else {
             if ($password === $confirmPassword) {
@@ -70,15 +73,12 @@ $errorPw = "";
                     unset($user['password']);
                     $_SESSION['user'] = $user;
 
-                    $errorEmail = "";
-                    $errorUsername = "";
-                    $errorPw = "";
-
                     redirect('../../profile.php');
                 // }
             }
             else {
-                $errorPw = "The password don't match. Please enter again";
+                $_SESSION['error'] = "The password don't match. Please enter again";
+                redirect('../../signup.php');
             }
 
         }

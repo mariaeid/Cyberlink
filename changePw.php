@@ -1,12 +1,15 @@
 <?php
 require __DIR__.'/views/header.php';
-require __DIR__.'/app//auth/editPw.php';
+// require __DIR__.'/app//auth/editPw.php';
+
+$errorCurrent="";
+$errorNew="";
 ?>
 
 <article>
     <h1>Change Password</h1>
 
-    <form action="changePw.php" method="post">
+    <form action="/app/auth/editPw.php" method="post">
 
         <div class="form-group">
             <label for="currentPassword">Current password:</label>

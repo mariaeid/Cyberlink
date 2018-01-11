@@ -3,6 +3,8 @@ require __DIR__.'/views/header.php';
 
 $posts = allPosts($pdo);
 
+var_dump($_SESSION['user']);
+
 ?>
 
 <div class="container-fluid">
@@ -15,9 +17,9 @@ $posts = allPosts($pdo);
             <?php if (isset($_SESSION['user'])): ?>
                 <p class="pull-right">Logged in as: <?php echo $_SESSION['user']['username']; ?></p>
                 <?php if (!isset($_SESSION['user']['picture'])): ?>
-                    <img src="app/imgs/avatar_placeholder.png" class="img-thumbnail rounded-circle avatarSmall pull-right">
+                    <img src="app/imgs/site/avatar_placeholder.png" class="img-thumbnail rounded-circle avatarSmall pull-right">
                 <?php else : ?>
-                    <img src="app/imgs/<?php echo $_SESSION['user']['picture']?>" class="img-thumbnail rounded-circle avatarSmall pull-right">
+                    <img src="app/imgs/avatar/<?php echo $_SESSION['user']['picture']?>" class="img-thumbnail rounded-circle avatarSmall pull-right">
                 <?php endif; ?>
             <?php endif; ?>
         </div>

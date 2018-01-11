@@ -1,48 +1,52 @@
 <?php
 require __DIR__.'/views/header.php';
-require __DIR__.'/app/auth/add.php';
 ?>
 
 <article>
     <h1>Create Account</h1>
 
-    <form action="signup.php" method="post">
+    <form action="/app/auth/add.php" method="post">
+
+        <div class="form-group">
+            <?php if (isset($_SESSION['error'])): ?>
+                <p class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']);?></p>
+            <?php endif; ?>
+        </div><!-- /form-group -->
+
         <div class="form-group">
             <label for="firstname">First Name</label>
-            <input class="form-control" type="firstname" name="firstname" required
-            value=<?php if (isset($_POST['firstname'])): ?>
-                "<?php echo $firstname ?>"
-            <?php endif; ?>>
+            <input class="form-control" type="firstname" name="firstname" required value=
+                <?php if (isset($_SESSION['firstnameSave'])):?>
+                    "<?php echo $_SESSION['firstnameSave']?>"
+                    <?php unset($_SESSION['firstnameSave']);?>
+                <?php endif; ?>>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="lastname">Last Name</label>
-            <input class="form-control" type="lastname" name="lastname" required
-            value=<?php if (isset($_POST['lastname'])): ?>
-                "<?php echo $lastname ?>"
-            <?php endif; ?>>
+            <input class="form-control" type="lastname" name="lastname" required value=
+                <?php if (isset($_SESSION['lastnameSave'])):?>
+                    "<?php echo $_SESSION['lastnameSave']?>"
+                    <?php unset($_SESSION['lastnameSave']);?>
+                <?php endif; ?>>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="lastname">Email</label>
-            <input class="form-control" type="email" name="email" required
-            value=<?php if (isset($_POST['email'])): ?>
-                "<?php echo $email ?>"
-            <?php endif; ?>>
-            <?php if ($errorEmail): ?>
-                <p class="alert alert-danger"><?php echo $errorEmail; ?></p>
-            <?php endif; ?>
+            <input class="form-control" type="email" name="email" required value=
+                <?php if (isset($_SESSION['emailSave'])):?>
+                    "<?php echo $_SESSION['emailSave']?>"
+                    <?php unset($_SESSION['emailSave']);?>
+                <?php endif; ?>>
         </div><!-- /form-group -->
 
         <div class="form-group">
             <label for="username">Username</label>
-            <input class="form-control" type="username" name="username" required
-            value=<?php if (isset($_POST['username'])): ?>
-                "<?php echo $username ?>"
-            <?php endif; ?>>
-            <?php if ($errorUsername): ?>
-                <p class="alert alert-danger"><?php echo $errorUsername; ?></p>
-            <?php endif; ?>
+            <input class="form-control" type="username" name="username" required value=
+                <?php if (isset($_SESSION['usernameSave'])):?>
+                    "<?php echo $_SESSION['usernameSave']?>"
+                    <?php unset($_SESSION['usernameSave']);?>
+                <?php endif; ?>>
         </div><!-- /form-group -->
 
         <div class="form-group">
@@ -53,9 +57,6 @@ require __DIR__.'/app/auth/add.php';
         <div class="form-group">
             <label for="confirmPassword">Confirm password:</label>
             <input class="form-control" type="password" name="confirmPassword" required>
-            <?php if ($errorPw): ?>
-                <p class="alert alert-danger"><?php echo $errorPw; ?></p>
-            <?php endif; ?>
         </div><!-- /form-group -->
 
         <button type="submit" name="add" class="btn btn-primary">Sign Up</button>

@@ -57,12 +57,14 @@ if (isset($_POST['editPw'])) {
             //Saving variable if new pw doesn't match with confirmed new pw
             else {
                 $errorNew = "The new password doesn't match. Please enter again";
+                redirect('../../changePw.php');
             }
         }
 
         //Saving variable if wrong current pw has been entered
         else {
             $errorCurrent = "The current password is not correct, please try again";
+            redirect('../../changePw.php');
         }
 
     }

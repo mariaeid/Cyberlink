@@ -12,7 +12,7 @@ if (isset($_FILES['picture'])) {
    $ext = $info['extension']; //Selects the extension from the array name
    $fileName = $_SESSION['user']['username'].'.'.$ext;
 
-   move_uploaded_file($picture['tmp_name'], __DIR__.'/../imgs/'.$fileName);
+   move_uploaded_file($picture['tmp_name'], __DIR__.'/../imgs/avatar/'.$fileName);
 
    $statement = $pdo->prepare("UPDATE users SET picture = :picture WHERE user_id = :id");
 

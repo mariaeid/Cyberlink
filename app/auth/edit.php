@@ -14,6 +14,28 @@ if (isset($_POST['edit'])) {
         $username = filter_var(trim($_POST['username']), FILTER_SANITIZE_STRING);
         $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
 
+        $statement = $pdo->prepare("SELECT * FROM users where user_id != :id");
+        $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
+        $statement->execute();
+
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($users as $user) {
+            $userEmail = $user['email'];
+            $userUsername = $user['username'];
+            $userID = $user['user_id'];
+
+            if ($userEmail === $email && $userID !== $_SESSION['user']['user_id']) {
+                $_SESSION['error'] = "The email address already exists";
+                redirect('../../profileEdit.php');
+            }
+
+            elseif ($userUsername === $username && $userID !== $_SESSION['user']['user_id']) {
+                $_SESSION['error'] = "The username  already exists";
+                redirect('../../profileEdit.php');
+            }
+        }
+
         $statement = $pdo->prepare("UPDATE users SET firstname = :firstname, lastname = :lastname, email = :email, username = :username, bio = :bio WHERE user_id = :id");
 
         if (!$statement) {
@@ -36,9 +58,8 @@ if (isset($_POST['edit'])) {
         $newData->execute();
 
         $user = $newData->fetch(PDO::FETCH_ASSOC);
-
+        unset($_SESSION['user']);
         $_SESSION['user'] = $user;
-
         redirect('../../profile.php');
     }
 }

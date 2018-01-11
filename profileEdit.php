@@ -6,6 +6,12 @@
     <form action="app/auth/edit.php" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
+            <?php if (isset($_SESSION['error'])): ?>
+                <p class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']);?></p>
+            <?php endif; ?>
+        </div><!-- /form-group -->
+
+        <div class="form-group">
             <label for="firstname">First Name:</label>
             <input class="form-control" type="text" name="firstname" value="<?php echo $_SESSION['user']['firstname'];?>" required>
         </div><!-- /form-group -->
