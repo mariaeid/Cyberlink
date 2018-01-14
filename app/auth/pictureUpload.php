@@ -10,7 +10,7 @@ if (isset($_FILES['picture'])) {
    $picture = $_FILES['picture'];
    $info = pathinfo($_FILES['picture']['name']); //Creates the array from name
    $ext = $info['extension']; //Selects the extension from the array name
-   $fileName = $_SESSION['user']['username'].'.'.$ext;
+   $fileName = $_SESSION['user']['user_id'].'.'.$ext;
 
    move_uploaded_file($picture['tmp_name'], __DIR__.'/../imgs/avatar/'.$fileName);
 

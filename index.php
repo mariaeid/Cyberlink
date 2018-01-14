@@ -3,6 +3,7 @@ require __DIR__.'/views/header.php';
 
 $posts = allPosts($pdo);
 
+
 ?>
 
 <div class="container-fluid">
@@ -38,10 +39,10 @@ $posts = allPosts($pdo);
 <article>
     <?php foreach ($posts as $post): ?>
         <form action="app/posts/vote.php#<?php echo $post['title']; ?>" id="<?php echo $post['title']?>" method="post">
-            <div class="border border-info p-3 m-3">
+            <div class="border p-3 m-3">
                 <a id="<?php echo $post['title']?>" class="siteLink" href="<?php echo $post['url']; ?>" target="_blank"><?php echo $post['title']; ?></a>
                 <p><?php echo $post['description']; ?></p>
-                <p class="fontSmall"> Submitted by <?php echo $post['post_username']; ?></p>
+                <p class="fontSmall"> Submitted by <?php echo $post['username']; ?></p>
                 <div class="voteContainer">
                     <div class="upVotes">
                         <!-- All upvotes on the post -->
@@ -49,14 +50,14 @@ $posts = allPosts($pdo);
                         <p class="voteNumber pr-1"><?php echo $upVotes['COUNT(*)']; ?></p>
                         <!-- Count on all upvotes on the post by the signed in user -->
                         <?php if (isset($_SESSION['user'])):
-                            $upVotesUser = allUserVotes($pdo, $post['post_id'], "1", $_SESSION['user']['username']);
+                            $upVotesUser = allUserVotes($pdo, $post['post_id'], "1", $_SESSION['user']['user_id']);
                             if (empty($upVotesUser)): ?>
-                                <button class="fa fa-thumbs-o-up fa-flag voteButton" aria-hidden="true" name="up" onsubmit=""></button>
+                                <button class="fa fa-arrow-circle-o-up fa-lg voteButton" aria-hidden="true" name="up" onsubmit=""></button>
                                 <?php else: ?>
-                                    <button class="fa fa-thumbs-o-up fa-flag voteButton voteButtonClicked" aria-hidden="true" name="up" onsubmit=""></button>
+                                    <button class="fa fa-arrow-circle-o-up fa-lg voteButton voteButtonUpClicked" aria-hidden="true" name="up" onsubmit=""></button>
                             <?php endif; ?>
                         <?php else: ?>
-                            <i class="fa fa-thumbs-o-up fa-pull-righ" aria-hidden="true"></i>
+                            <i class="fa fa-arrow-circle-o-up fa-pull-righ voteButtonUpClicked" aria-hidden="true"></i>
                         <?php endif ; ?>
                     </div>
                     <div class="downVotes">
@@ -65,14 +66,14 @@ $posts = allPosts($pdo);
                         <p class="voteNumber pr-1"><?php echo $downVotes['COUNT(*)']; ?></p>
                         <!-- Count on all downvotes on the post by the signed in user -->
                         <?php if (isset($_SESSION['user'])):
-                            $downVotesUser = allUserVotes($pdo, $post['post_id'], "-1", $_SESSION['user']['username']);
+                            $downVotesUser = allUserVotes($pdo, $post['post_id'], "-1", $_SESSION['user']['user_id']);
                             if (empty($downVotesUser)): ?>
-                                <button class="fa fa-thumbs-o-down fa-flag voteButton" aria-hidden="true" name="down" onsubmit=""></button>
+                                <button class="fa fa-arrow-circle-o-down fa-lg voteButton" aria-hidden="true" name="down" onsubmit=""></button>
                                 <?php else: ?>
-                                    <button class="fa fa-thumbs-o-down fa-flag voteButton voteButtonClicked" aria-hidden="true" name="down" onsubmit=""></button>
+                                    <button class="fa fa-arrow-circle-o-down fa-lg voteButton voteButtonDownClicked" aria-hidden="true" name="down" onsubmit=""></button>
                             <?php endif; ?>
                         <?php else: ?>
-                            <i class="fa fa-thumbs-o-up fa-pull-righ" aria-hidden="true"></i>
+                            <i class="fa fa-arrow-circle-o-down fa-pull-righ voteButtonDownClicked" aria-hidden="true"></i>
                         <?php endif ; ?>
                     </div>
                 </div>

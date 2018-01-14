@@ -26,19 +26,19 @@ i {
 }
 
 .voteButton {
-  padding: 0;
+  padding: 2px;
   border: none;
   outline:none;
   background: none;
   cursor: pointer;
 }
 
-.voteButtonClicked {
-  color: #019ba7;
+.voteButtonUpClicked {
+  color: #009900;
 }
 
-.fa-flag:hover {
-    color: #019ba7;
+.voteButtonDownClicked {
+  color: #cc0000;
 }
 
 .upVotes {

@@ -1,7 +1,10 @@
 <?php require __DIR__.'/views/header.php'; ?>
 
 <article>
-    <h1><?php echo $_SESSION['user']['firstname'].' '.$_SESSION['user']['lastname'];?></h1>
+    <div class="form-group">
+        <h1><?php echo $_SESSION['user']['username'];?></h1>
+        <h5><?php echo $_SESSION['user']['firstname'].' '.$_SESSION['user']['lastname'];?></h5>
+    </div>
 
     <form action="/app/auth/pictureUpload.php" method="post" enctype="multipart/form-data">
 
@@ -20,7 +23,7 @@
         </div>
     </form>
     <form action="/profileEdit.php" method="post">
-        <div class="form-group">
+        <div class="form-group border p-3">
             <h3>Biography</h3>
             <p><?php echo $_SESSION['user']['bio'] ?></p>
         </div>

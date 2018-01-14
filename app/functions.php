@@ -18,7 +18,7 @@ if (!function_exists('redirect')) {
 }
 
 function allPosts($pdo) {
-    $statement = $pdo->prepare("SELECT * FROM posts");
+    $statement = $pdo->prepare("SELECT * FROM posts JOIN users ON posts.post_user_id=users.user_id");
 
     if (!$statement) {
         die(var_dump(
@@ -46,8 +46,8 @@ function allVotes($pdo, $postID, $direction) {
     return $votes;
 }
 
-function allUserVotes($pdo, $postID, $direction, $username) {
-    $statement = $pdo->query("SELECT * FROM votes WHERE direction='$direction' AND vote_post_id = :post_id AND vote_username = :username");
+function allUserVotes($pdo, $postID, $direction, $user_id) {
+    $statement = $pdo->query("SELECT * FROM votes WHERE direction='$direction' AND vote_post_id = :post_id AND vote_user_id = :user_id");
 
     if (!$statement) {
         die(var_dump(
@@ -56,7 +56,7 @@ function allUserVotes($pdo, $postID, $direction, $username) {
     }
 
     $statement->bindParam(':post_id', $postID, PDO::PARAM_STR);
-    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->bindParam(':user_id', $user_id, PDO::PARAM_STR);
     $statement->execute();
     $votesUser = $statement->fetch(PDO::FETCH_ASSOC);
     return $votesUser;
