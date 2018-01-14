@@ -3,8 +3,6 @@ require __DIR__.'/views/header.php';
 
 $posts = allPosts($pdo);
 
-var_dump($_SESSION['user']);
-
 ?>
 
 <div class="container-fluid">
