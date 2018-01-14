@@ -7,7 +7,7 @@
       </li><!-- /nav-item -->
       <li class="nav-item">
           <?php if (isset($_SESSION['user'])): ?>
-              <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/submissions.php' ? 'active' : ''; ?>" href="/submissions.php"><?php echo "Your Posts" ?></a>
+              <a class="nav-link <?php echo $_SERVER['SCRIPT_NAME'] === '/posts.php' ? 'active' : ''; ?>" href="/posts.php"><?php echo "Your Posts" ?></a>
           <?php endif; ?>
       </li><!-- /nav-item -->
       <li class="nav-item">

@@ -8,7 +8,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <article>
-    <h1>Edit Submission</h1>
+    <h1>Edit post</h1>
     <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
         <form action="app/posts/updateDelete.php" method="post" enctype="multipart/form-data">
 

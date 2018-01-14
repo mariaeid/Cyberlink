@@ -33,7 +33,7 @@ if (isset($_POST['edit'])) {
 
         $post = $newData->fetch(PDO::FETCH_ASSOC);
 
-        redirect('/../../submissions.php');
+        redirect('/../../posts.php');
     }
 }
 
@@ -51,9 +51,9 @@ if (isset($_POST['delete'])) {
     $statement->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
 
     $statement -> execute();
-    redirect('../../submissions.php');
+    redirect('../../posts.php');
 }
 
 if (isset($_POST['cancel'])) {
-    redirect('../../submissions.php');
+    redirect('../../posts.php');
 }

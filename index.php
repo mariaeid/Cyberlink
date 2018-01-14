@@ -26,7 +26,7 @@ $posts = allPosts($pdo);
     <div class="row">
         <div class="col-md-12">
             <?php if (isset($_SESSION['user'])): ?>
-                <form action="/newSubmission.php" method="post">
+                <form action="/newpost.php" method="post">
                     <div class="form-group">
                         <button type="submit" name="newPost" class="btn btn-light">Add a new post</button>
                     </div>
