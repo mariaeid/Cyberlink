@@ -3,9 +3,6 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
-$errorCurrent = "";
-$errorNew = "";
-
 if (isset($_POST['editPw'])) {
 
     if (isset($_POST['currentPassword'], $_POST['newPassword'], $_POST['confirmPassword'])) {
@@ -44,26 +41,22 @@ if (isset($_POST['editPw'])) {
                 $newData->execute();
                 $user = $newData->fetch(PDO::FETCH_ASSOC);
 
-                //Store new session with user details (except pw), empty error variables & redirects to the profile page
+                //Store new session with user details (except pw) & redirects to the profile page
                 unset($user['password']);
                 $_SESSION['user'] = $user;
-
-                $errorCurrent = "";
-                $errorNew = "";
-
                 redirect('../../profile.php');
             }
 
             //Saving variable if new pw doesn't match with confirmed new pw
             else {
-                $errorNew = "The new password doesn't match. Please enter again";
+                $_SESSION['error'] = "The new password doesn't match. Please enter again";
                 redirect('../../changePw.php');
             }
         }
 
         //Saving variable if wrong current pw has been entered
         else {
-            $errorCurrent = "The current password is not correct, please try again";
+            $_SESSION['error'] = "The current password is not correct, please try again";
             redirect('../../changePw.php');
         }
 
