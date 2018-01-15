@@ -48,10 +48,14 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
                 <?php endif; ?>
             <?php endforeach; ?>
 
-            <button type="submit" name="edit" class="btn btn-primary">Save Changes</button>
-            <button type="submit" name="cancel" class="btn btn-primary" formnovalidate>Cancel</button>
-            <button type="submit" name="delete" class="btn btn-danger" formnovalidate><i class="fa fa-trash-o fa-lg"></i> Delete</button>
+            <div class="form-group">
+                <button type="submit" name="edit" class="btn btn-primary">Save Changes</button>
+                <button type="submit" name="cancel" class="btn btn-primary" formnovalidate>Cancel</button>
+                <button type="submit" name="delete" class="btn btn-danger" onclick="return confirmDelete();" formnovalidate ><i class="fa fa-trash-o fa-lg"></i> Delete</button>
+            </div><!-- /form-group -->
+
         </form>
+
 </article>
 
 <?php require __DIR__.'/views/footer.php'; ?>
