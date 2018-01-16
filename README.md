@@ -8,7 +8,7 @@ This is the second assignment in the course PHP at YRGO yrkeshögskola.
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
   1. Clone repository to your local drive.
-  2. Set up MAMP or something like it and set the root directory to the repository folder "Cyerlink"
+  2. Set up MAMP or something like it and set the root directory to the repository folder "Cyberlink"
   3. Start servers in MAMP, then open your browser of choice and go to "localhost/index.php"
   4. All done!
 
