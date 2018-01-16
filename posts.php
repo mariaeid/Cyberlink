@@ -14,7 +14,7 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
             <?php if ($post['post_user_id'] === $_SESSION['user']['user_id']):?>
                 <form action="/postEdit.php" method="post">
                     <div class="form-group border border-dark p-3 posts infoContainer">
-                        <a href="<?php echo $post['url']; ?>"target="_blank"><?php echo $post['title']; ?></a>
+                        <a class="siteLink" href="<?php echo $post['url']; ?>"target="_blank"><?php echo $post['title']; ?></a>
                         <p><?php echo $post['description']; ?></p>
                         <p>Submitted by <?php echo $post['username']; ?></p>
                         <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">

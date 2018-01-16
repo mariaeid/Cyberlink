@@ -29,10 +29,11 @@ body {
 
 .siteLink {
   font-size: 20px;
+  color: #D9853B;
 }
 
 .siteLink:visited {
-  color: #551A8B;
+  color: #ad6a2f;
 }
 
 .fontSmall {
