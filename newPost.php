@@ -8,7 +8,7 @@ require __DIR__.'/views/header.php';
         <h4>Add link</h4>
         <div class="form-group">
             <label for="url">URL:</label>
-            <input class="form-control" type="text" name="url" required placeholder="https://">
+            <input class="form-control" type="url" name="url" required placeholder="https://">
         </div>
         <div class="form-group">
             <label for="title">Title:</label>
