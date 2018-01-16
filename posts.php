@@ -10,14 +10,15 @@ $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
 <article>
     <h1>Your Posts</h1>
         <?php foreach ($posts as $post): ?>
+            <!-- Display posts crteated by the logged in user -->
             <?php if ($post['post_user_id'] === $_SESSION['user']['user_id']):?>
                 <form action="/postEdit.php" method="post">
-                    <div class="form-group border border-info p-3 posts">
+                    <div class="form-group border p-3 posts">
                         <a href="<?php echo $post['url']; ?>"target="_blank"><?php echo $post['title']; ?></a>
                         <p><?php echo $post['description']; ?></p>
                         <p>Submitted by <?php echo $post['username']; ?></p>
                         <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
-                        <button type="submit" name="postEdit" class="btn btn-primary">Edit</button>
+                        <button type="submit" name="postEdit" class="btn btn-dark btn-sm">Edit</button>
                     </div>
                 </form>
             <?php endif; ?>

@@ -59,8 +59,8 @@ require __DIR__.'/views/header.php';
             <input class="form-control" type="password" name="confirmPassword" required>
         </div><!-- /form-group -->
 
-        <button type="submit" name="add" class="btn btn-primary">Sign Up</button>
-        <button type="submit" name="cancel" class="btn btn-primary">Cancel</button>
+        <button type="submit" name="add" class="btn btn-dark">Sign Up</button>
+        <button type="submit" name="cancel" class="btn btn-dark">Cancel</button>
     </form>
 </article>
 

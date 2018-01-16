@@ -31,7 +31,7 @@ require __DIR__.'/views/header.php';
             <small class="form-text text-muted">Please provide your password</small>
         </div><!-- /form-group -->
 
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-dark">Login</button>
     </form>
 </article>
 

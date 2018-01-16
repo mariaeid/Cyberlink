@@ -20,7 +20,7 @@
         <!-- Uploading of image: png and jpg files only -->
         <div class="form-group">
             <input type="file" name="picture" accept=".png, .jpg">
-            <button type="submit" class="btn btn-primary">Upload</button>
+            <button type="submit">Upload</button>
         </div>
 
     </form>
@@ -32,13 +32,13 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" name="edit" class="btn btn-primary">Edit profile</button>
+            <button type="submit" name="edit" class="btn btn-dark">Edit profile</button>
         </div>
     </form>
 
     <form action="/changePw.php" method="post">
         <div class="form-group">
-            <button type="submit" name="changePw" class="btn btn-primary">Change password</button>
+            <button type="submit" name="changePw" class="btn btn-dark">Change password</button>
         </div>
     </form>
 </article>

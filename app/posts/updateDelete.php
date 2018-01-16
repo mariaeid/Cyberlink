@@ -38,6 +38,7 @@ if (isset($_POST['edit'])) {
 
 // Deletion of posts in the database
 if (isset($_POST['delete'])) {
+    //Deleting the post
     $statement = $pdo->prepare("DELETE FROM posts WHERE post_id = :id");
 
         if (!$statement) {
@@ -49,6 +50,20 @@ if (isset($_POST['delete'])) {
     $statement->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
 
     $statement -> execute();
+
+    //Deleting votes on the post
+    $statement = $pdo->prepare("DELETE FROM votes WHERE vote_post_id = :id");
+
+        if (!$statement) {
+          die(var_dump(
+              $pdo->errorInfo()
+          ));
+        }
+
+    $statement->bindParam(':id', $_POST['id'], PDO::PARAM_INT);
+
+    $statement -> execute();
+
     redirect('../../posts.php');
 }
 

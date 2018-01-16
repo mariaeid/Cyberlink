@@ -19,8 +19,8 @@ require __DIR__.'/views/header.php';
             <textarea class="form-control" name="description" rows="8" cols="80" required></textarea>
         </div>
         <div class="form-group">
-            <button type="submit" name="store" class="btn btn-primary">Submit</button>
-            <button type="submit" name="cancel" class="btn btn-primary" formnovalidate>Cancel</button>
+            <button type="submit" name="store" class="btn btn-dark">Submit</button>
+            <button type="submit" name="cancel" class="btn btn-dark" formnovalidate>Cancel</button>
         </div>
     </form>
 
