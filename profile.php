@@ -19,7 +19,7 @@
 
         <div class="form-group">
             <input type="file" name="picture" accept=".png, .jpg">
-            <button type="submit">Upload</button>
+            <button type="submit" class="btn btn-primary">Upload</button>
         </div>
     </form>
     <form action="/profileEdit.php" method="post">

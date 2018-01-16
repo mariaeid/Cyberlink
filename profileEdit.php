@@ -1,4 +1,4 @@
-<?php require __DIR__.'/views/header.php'; ?>
+<?php require __DIR__.'/views/header.php';?>
 
 <article>
     <h1>Edit Profile</h1>
@@ -38,6 +38,7 @@
 
         <button type="submit" name="edit" class="btn btn-primary">Save Changes</button>
         <button type="submit" name="cancel" class="btn btn-primary" formnovalidate>Cancel</button>
+        <button type="submit" name="delete" class="btn btn-danger" onclick="return confirmDeleteAccount();" formnovalidate ><i class="fa fa-trash-o fa-lg"></i> Delete</button>
     </form>
 </article>
 

@@ -3,7 +3,6 @@ require __DIR__.'/views/header.php';
 
 $posts = allPosts($pdo);
 
-
 ?>
 
 <div class="container-fluid">

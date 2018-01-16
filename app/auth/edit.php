@@ -64,6 +64,26 @@ if (isset($_POST['edit'])) {
     }
 }
 
+if (isset($_POST['delete'])) {
+    $statement = $pdo->prepare("DELETE FROM users WHERE user_id = :id");
+
+        if (!$statement) {
+          die(var_dump(
+              $pdo->errorInfo()
+          ));
+        }
+
+    $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
+
+    $statement -> execute();
+    unset($_SESSION['user']);
+    unset($_SESSION['firstnameSave']);
+    unset($_SESSION['lastnameSave']);
+    unset($_SESSION['emailSave']);
+    unset($_SESSION['usernameSave']);
+    redirect('../../index.php');
+}
+
 if (isset($_POST['cancel'])) {
     redirect('../../profile.php');
 }
