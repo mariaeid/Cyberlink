@@ -88,5 +88,5 @@ if (isset($_POST['add'])) {
 }
 // Cancel of sign up
 if (isset($_POST['cancel'])) {
-    redirect('../../profile.php');
+    redirect('../../index.php');
 }

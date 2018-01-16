@@ -60,7 +60,7 @@ require __DIR__.'/views/header.php';
         </div><!-- /form-group -->
 
         <button type="submit" name="add" class="btn btnColor">Sign Up</button>
-        <button type="submit" name="cancel" class="btn btnColor">Cancel</button>
+        <button type="submit" name="cancel" class="btn btnColor" formnovalidate>Cancel</button>
     </form>
 </article>
 
