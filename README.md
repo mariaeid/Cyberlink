@@ -1,6 +1,6 @@
 # Cyberlink
 
-<img src="https://media.giphy.com/media/wpoLqr5FT1sY0/giphy.gif" alt="07 - Cyberlink" width="100%">
+<img src="https://media.giphy.com/media/wpoLqr5FT1sY0/giphy.gif" alt="07 - Cyberlink" width="50%">
 
 This is the second assignment in the course PHP at YRGO yrkeshögskola.
 
