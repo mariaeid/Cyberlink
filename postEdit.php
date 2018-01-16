@@ -47,9 +47,9 @@ $posts = allPosts($pdo);
             <?php endforeach; ?>
 
             <div class="form-group">
-                <button type="submit" name="edit" class="btn btn-dark">Save Changes</button>
-                <button type="submit" name="cancel" class="btn btn-dark" formnovalidate>Cancel</button>
-                <button type="submit" name="delete" class="btn btn-danger" onclick="return confirmDeletePost();" formnovalidate ><i class="fa fa-trash-o fa-lg"></i> Delete</button>
+                <button type="submit" name="edit" class="btn btnColor">Save Changes</button>
+                <button type="submit" name="cancel" class="btn btnColor" formnovalidate>Cancel</button>
+                <button type="submit" name="delete" class="btn btn-light" onclick="return confirmDeletePost();" formnovalidate ><i class="fa fa-trash-o fa-lg"></i> Delete</button>
             </div><!-- /form-group -->
 
         </form>

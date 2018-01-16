@@ -28,7 +28,7 @@ $posts = allPosts($pdo);
             <?php if (isset($_SESSION['user'])): ?>
                 <form action="/newpost.php" method="post">
                     <div class="form-group">
-                        <button type="submit" name="newPost" class="btn btn-light">Add a new post</button>
+                        <button type="submit" name="newPost" class="btn btnColor">Add a new post</button>
                     </div>
                 </form>
             <?php endif; ?>
@@ -40,7 +40,7 @@ $posts = allPosts($pdo);
     <!-- Printing out all posts -->
     <?php foreach ($posts as $post): ?>
         <form action="app/posts/vote.php#<?php echo $post['title']; ?>" id="<?php echo $post['title']?>" method="post">
-            <div class="container-fluid border p-3 m-3">
+            <div class="container-fluid border border-dark p-3 m-3 infoContainer">
                 <div class="row">
                     <div class="d-flex col-md-2">
                         <?php if (!isset($post['picture'])): ?>

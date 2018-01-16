@@ -38,9 +38,9 @@
             <textarea class="form-control" name="bio" rows="8" cols="80"><?php echo $_SESSION['user']['bio'];?></textarea>
         </div><!-- /form-group -->
 
-        <button type="submit" name="edit" class="btn btn-dark">Save Changes</button>
-        <button type="submit" name="cancel" class="btn btn-dark" formnovalidate>Cancel</button>
-        <button type="submit" name="delete" class="btn btn-danger" onclick="return confirmDeleteAccount();" formnovalidate ><i class="fa fa-trash-o fa-lg"></i> Delete</button>
+        <button type="submit" name="edit" class="btn btnColor">Save Changes</button>
+        <button type="submit" name="cancel" class="btn btnColor" formnovalidate>Cancel</button>
+        <button type="submit" name="delete" class="btn btn-light" onclick="return confirmDeleteAccount();" formnovalidate ><i class="fa fa-trash-o fa-lg"></i> Delete</button>
     </form>
 </article>
 

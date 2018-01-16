@@ -1,11 +1,30 @@
 /* Adding custom styles. */
 
+body {
+  background-color: #558C89;
+  color: #fff;
+}
+
 .logo {
   width: 40px;
 }
 
 .displayFont {
   font-family: 'Press Start 2P', cursive;
+}
+
+.infoContainer {
+  background-color: #fff;
+  color: #000;
+}
+
+.btnColor {
+  background-color: #D9853B;
+  color: #fff;
+}
+
+.btnColor:hover {
+  background-color: #c37735;
 }
 
 .siteLink {

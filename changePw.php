@@ -30,8 +30,8 @@ require __DIR__.'/views/header.php';
             <input class="form-control" type="password" name="confirmPassword" required>
         </div><!-- /form-group -->
 
-        <button type="submit" name="editPw" class="btn btn-dark">Save Changes</button>
-        <button type="submit" name="cancel" class="btn btn-dark" formnovalidate>Cancel</button>
+        <button type="submit" name="editPw" class="btn btnColor">Save Changes</button>
+        <button type="submit" name="cancel" class="btn btnColor" formnovalidate>Cancel</button>
 
     </form>
 

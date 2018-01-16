@@ -26,19 +26,19 @@
     </form>
 
     <form action="/profileEdit.php" method="post">
-        <div class="form-group border p-3">
-            <h3>Biography</h3>
+        <h3>Biography</h3>
+        <div class="form-group border border-dark p-3 infoContainer">
             <p><?php echo $_SESSION['user']['bio'] ?></p>
         </div>
 
         <div class="form-group">
-            <button type="submit" name="edit" class="btn btn-dark">Edit profile</button>
+            <button type="submit" name="edit" class="btn btnColor">Edit profile</button>
         </div>
     </form>
 
     <form action="/changePw.php" method="post">
         <div class="form-group">
-            <button type="submit" name="changePw" class="btn btn-dark">Change password</button>
+            <button type="submit" name="changePw" class="btn btnColor">Change password</button>
         </div>
     </form>
 </article>
