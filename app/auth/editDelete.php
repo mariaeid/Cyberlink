@@ -68,8 +68,9 @@ if (isset($_POST['edit'])) {
     }
 }
 
-// Delete of user details
+// Delete of account
 if (isset($_POST['delete'])) {
+    // Deleting user
     $statement = $pdo->prepare("DELETE FROM users WHERE user_id = :id");
 
         if (!$statement) {
@@ -81,6 +82,34 @@ if (isset($_POST['delete'])) {
     $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
 
     $statement -> execute();
+
+    // Deleting the user's votes
+    $statement = $pdo->prepare("DELETE FROM votes WHERE vote_user_id = :id");
+
+        if (!$statement) {
+          die(var_dump(
+              $pdo->errorInfo()
+          ));
+        }
+
+    $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
+
+    $statement -> execute();
+
+    // Deliting the user's posts
+    $statement = $pdo->prepare("DELETE FROM posts WHERE post_user_id = :id");
+
+        if (!$statement) {
+          die(var_dump(
+              $pdo->errorInfo()
+          ));
+        }
+
+    $statement->bindParam(':id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
+
+    $statement -> execute();
+
+    // Removing user session and saved data
     unset($_SESSION['user']);
     unset($_SESSION['save']);
     redirect('../../index.php');

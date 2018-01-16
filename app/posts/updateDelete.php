@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// Update of posts in the database (applies when clicking on edit).
-
+// Update of posts in the database
 if (isset($_POST['edit'])) {
     if (isset($_POST['title'], $_POST['url'], $_POST['description'])) {
         $title = filter_var(trim($_POST['title']), FILTER_SANITIZE_STRING);
@@ -37,8 +36,7 @@ if (isset($_POST['edit'])) {
     }
 }
 
-// Deletion of posts in the database (applies when clicking on delete).
-
+// Deletion of posts in the database
 if (isset($_POST['delete'])) {
     $statement = $pdo->prepare("DELETE FROM posts WHERE post_id = :id");
 
@@ -54,6 +52,7 @@ if (isset($_POST['delete'])) {
     redirect('../../posts.php');
 }
 
+// Cancel of edit post
 if (isset($_POST['cancel'])) {
     redirect('../../posts.php');
 }

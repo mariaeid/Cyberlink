@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// In this file we store/insert new posts in the database.
-
+// Adding new post in the database.
 if (isset($_POST['store'])) {
     if (isset($_POST['title'], $_POST['url'], $_POST['description'])) {
         $title = filter_var(trim($_POST['title']), FILTER_SANITIZE_STRING);
@@ -31,6 +30,7 @@ if (isset($_POST['store'])) {
     }
 }
 
+// Cancel of creating post
 if (isset($_POST['cancel'])) {
     redirect('../../index.php');
 }

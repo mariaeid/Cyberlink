@@ -60,6 +60,7 @@ require __DIR__.'/views/header.php';
         </div><!-- /form-group -->
 
         <button type="submit" name="add" class="btn btn-primary">Sign Up</button>
+        <button type="submit" name="cancel" class="btn btn-primary">Cancel</button>
     </form>
 </article>
 

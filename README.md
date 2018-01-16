@@ -2,7 +2,7 @@
 
 <img src="https://media.giphy.com/media/wpoLqr5FT1sY0/giphy.gif" alt="07 - Cyberlink" width="50%">
 
-This is the second assignment in the course PHP at YRGO yrkeshögskola.
+This is the second assignment in the course PHP at YRGO yrkeshögskola. It contains a Reddit clone where you can create your user, edit user information, add and share links with others and vote on links. 
 
 ## Getting Started
 
@@ -37,4 +37,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Testers
 
-?? & ??
+Kajsa Taipale & Emma Alborn
