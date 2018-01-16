@@ -28,7 +28,11 @@
     <form action="/profileEdit.php" method="post">
         <h3>Biography</h3>
         <div class="form-group border border-dark p-3 infoContainer">
-            <p><?php echo $_SESSION['user']['bio'] ?></p>
+            <?php if (!isset($_SESSION['user']['bio'])): ?>
+                <p>Edit your profile to add a biography</p>
+            <?php else: ?>
+                <p><?php echo $_SESSION['user']['bio'] ?></p>
+            <?php endif; ?>
         </div>
 
         <div class="form-group">
