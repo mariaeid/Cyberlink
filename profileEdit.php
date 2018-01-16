@@ -3,8 +3,9 @@
 <article>
     <h1>Edit Profile</h1>
 
-    <form action="app/auth/edit.php" method="post" enctype="multipart/form-data">
+    <form action="app/auth/editDelete.php" method="post" enctype="multipart/form-data">
 
+        <!-- Displaying error messages if there were any when the form was submitted -->
         <div class="form-group">
             <?php if (isset($_SESSION['error'])): ?>
                 <p class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']);?></p>
@@ -13,6 +14,7 @@
 
         <div class="form-group">
             <label for="firstname">First Name:</label>
+            <!-- If a user has submitted the form with errors, the data previously entered is shown in the value of the field -->
             <input class="form-control" type="text" name="firstname" value="<?php echo $_SESSION['user']['firstname'];?>" required>
         </div><!-- /form-group -->
 

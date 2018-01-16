@@ -8,6 +8,7 @@ require __DIR__.'/views/header.php';
 
     <form action="/app/auth/editPw.php" method="post">
 
+        <!-- Displaying error messages if there were any when the form was submitted -->
         <div class="form-group">
             <?php if (isset($_SESSION['error'])): ?>
                 <p class="alert alert-danger"><?php echo $_SESSION['error']; unset($_SESSION['error']);?></p>

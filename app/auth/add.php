@@ -27,10 +27,10 @@ require __DIR__.'/../autoload.php';
         $userEmail = $user['email'];
         $userUsername = $user['username'];
 
-        $_SESSION['firstnameSave'] = $firstname;
-        $_SESSION['lastnameSave'] = $lastname;
-        $_SESSION['emailSave'] = $email;
-        $_SESSION['usernameSave'] = $username;
+        $_SESSION['save']['firstnameSave'] = $firstname;
+        $_SESSION['save']['lastnameSave'] = $lastname;
+        $_SESSION['save']['emailSave'] = $email;
+        $_SESSION['save']['usernameSave'] = $username;
 
         //Saving error session if the email already exists
         if ($userEmail === $email) {

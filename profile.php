@@ -9,7 +9,7 @@
     <form action="/app/auth/pictureUpload.php" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
-            <!-- Om bild inte finns - visa avatar placeholder-->
+            <!-- Displays an avatar placeholder if the user hasn't uploaded an image -->
             <?php if (!isset($_SESSION['user']['picture'])): ?>
                 <img src="app/imgs/site/avatar_placeholder.png" class="img-thumbnail rounded-circle avatarLarge">
             <?php else : ?>
@@ -17,11 +17,14 @@
             <?php endif; ?>
         </div>
 
+        <!-- Uploading of image: png and jpg files only -->
         <div class="form-group">
             <input type="file" name="picture" accept=".png, .jpg">
             <button type="submit" class="btn btn-primary">Upload</button>
         </div>
+
     </form>
+
     <form action="/profileEdit.php" method="post">
         <div class="form-group border p-3">
             <h3>Biography</h3>
@@ -32,6 +35,7 @@
             <button type="submit" name="edit" class="btn btn-primary">Edit profile</button>
         </div>
     </form>
+
     <form action="/changePw.php" method="post">
         <div class="form-group">
             <button type="submit" name="changePw" class="btn btn-primary">Change password</button>

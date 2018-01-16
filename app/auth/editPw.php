@@ -3,6 +3,7 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
+// Change of password
 if (isset($_POST['editPw'])) {
 
     if (isset($_POST['currentPassword'], $_POST['newPassword'], $_POST['confirmPassword'])) {
@@ -16,7 +17,7 @@ if (isset($_POST['editPw'])) {
         $statement->execute();
         $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-        //Verification to see that the entered new pw matches the user's pw
+        //Verification to see that the entered new pw matches the user's current pw
         if (password_verify($currentPassword, $user['password']))
         {
             //If the user has repeated the new pw correctly the new pw is saved
@@ -63,6 +64,7 @@ if (isset($_POST['editPw'])) {
     }
 }
 
+// Cancel of editing pw
 if (isset($_POST['cancel'])) {
     redirect('../../profile.php');
 }

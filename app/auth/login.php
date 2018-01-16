@@ -6,7 +6,6 @@ require __DIR__.'/../autoload.php';
 
 // Login of user
 
-
 if (isset($_POST['email'], $_POST['password'])) {
     $email = filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL);
     $password = $_POST['password'];
@@ -17,7 +16,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    //Saving error variable if the email address doesn't exist
+    //Saving error in a session if the email address doesn't exist
     if (empty($user)) {
         $_SESSION['error'] = "There is no registered user on this email address";
         redirect('/../../login.php');
@@ -31,7 +30,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
             redirect('/index.php');
         }
-        //Saving error variable if the password and email don't match
+        //Saving error variable if the user password and email don't match
         else {
             $_SESSION['error'] = "The password is not correct";
             $_SESSION['emailSave'] = $email;
