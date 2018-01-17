@@ -1,10 +1,8 @@
 <?php
 require __DIR__.'/views/header.php';
 
-$statement = $pdo->prepare("SELECT * FROM posts JOIN users ON posts.post_user_id=users.user_id");
-$statement->execute();
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-
+//Getting all posts by calling the function allPosts from functions.php
+$posts = allPosts($pdo);
 ?>
 
 <article>

@@ -81,9 +81,7 @@ if (isset($_POST['add'])) {
                 $_SESSION['error'] = "The password don't match. Please enter again";
                 redirect('../../signup.php');
             }
-
         }
-
     }
 }
 // Cancel of sign up

@@ -18,7 +18,7 @@ if (!function_exists('redirect')) {
 }
 
 function allPosts($pdo) {
-    $statement = $pdo->prepare("SELECT * FROM posts JOIN users ON posts.post_user_id=users.user_id");
+    $statement = $pdo->prepare("SELECT * FROM posts JOIN users ON posts.post_user_id=users.user_id ORDER BY post_id DESC");
 
     if (!$statement) {
         die(var_dump(
